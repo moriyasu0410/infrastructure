@@ -6,6 +6,10 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+package "mysql-libs" do
+    action :remove
+end
+
 remote_file "/tmp/#{node['mysql']['file_name']}" do
         source "#{node['mysql']['remote_uri']}"
 end

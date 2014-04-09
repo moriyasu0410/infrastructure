@@ -5,7 +5,7 @@
 # Copyright 2014, YOUR_COMPANY_NAME
 #
 # All rights reserved - Do Not Redistribute
-#       
+#
 # epel
 remote_file "/tmp/#{node['epel']['file_name']}" do
         source "#{node['epel']['remote_uri']}"
@@ -30,8 +30,8 @@ package node['remi']['file_name'] do
         source "/tmp/#{node['remi']['file_name']}"
 end
 
-# PHP 
-%w{php php-devel php-mbstring php-mysql}.each do |p|
+# PHP
+%w{php php-devel php-mbstring php-mysql php-pdo php-xml php-pecl-xdebug}.each do |p|
         package p do
                 action :install
                 options "--enablerepo=remi --enablerepo=remi-php55"
@@ -39,10 +39,10 @@ end
 end
 
 # PHPUnit
-execute "phpunit-install" do
-        command "pear config-set auto_discover 1; pear install pear.phpunit.de/PHPUnit"
-        not_if { ::File.exists?("/usr/bin/phpunit")}
-end
+# execute "phpunit-install" do
+#         command "pear config-set auto_discover 1; pear install pear.phpunit.de/PHPUnit"
+#         not_if { ::File.exists?("/usr/bin/phpunit")}
+# end
 
 #template "php.ini" do
 #        path "/etc/php.ini"
